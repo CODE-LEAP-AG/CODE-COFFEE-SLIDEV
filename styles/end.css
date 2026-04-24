@@ -1,0 +1,24 @@
+/* CODE COFFEE theme styles */
+
+.cc-end {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 4rem;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 110%, rgba(26, 26, 26, 0.14), transparent 55%),
+    linear-gradient(160deg, #ffdd33 0%, #f5c200 100%);
+}
+
+.cc-end__title {
+  font-size: 5.5rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.cc-end__subtitle {
+  margin-top: 1.25rem;
+  color: var(--cc-muted);
+  font-size: 1.15rem;
+}

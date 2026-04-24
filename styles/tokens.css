@@ -1,0 +1,15 @@
+/* CODE COFFEE theme styles */
+
+:root {
+  --cc-bg: #ffd13a;
+  --cc-bg-soft: #f5c426;
+  --cc-surface: #ffffff;
+  --cc-fg: #1a1a1a;
+  --cc-muted: #5a5540;
+  --cc-accent: #1a1a1a;
+  --cc-accent-soft: #3d2f1a;
+  --cc-underscore: #ffd13a;
+  --cc-card: #ffffff;
+  --cc-card-fg: #1a1a1a;
+  --cc-line: rgba(26, 26, 26, 0.18);
+}

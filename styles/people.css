@@ -1,0 +1,52 @@
+/* CODE COFFEE theme styles */
+
+.cc-people {
+  padding: 3rem 4rem 4rem;
+}
+
+.cc-people__grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.cc-people__grid.cols-1 { grid-template-columns: 1fr; max-width: 20rem; margin-inline: auto; }
+.cc-people__grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.cc-people__grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.cc-people__grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+.cc-people__card {
+  text-align: center;
+  padding: 1.25rem;
+  border: 1px solid var(--cc-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.cc-people__card .cc-avatar {
+  width: 8rem;
+  height: 8rem;
+  margin: 0 auto;
+}
+
+.cc-people__card .cc-avatar__placeholder {
+  font-size: 2.75rem;
+}
+
+.cc-people__name {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.cc-people__team {
+  color: var(--cc-accent-soft);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  letter-spacing: 0.02em;
+}
+
+.cc-people__role {
+  color: var(--cc-muted);
+  font-size: 0.85rem;
+}

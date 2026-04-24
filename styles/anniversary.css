@@ -1,0 +1,19 @@
+/* CODE COFFEE theme styles — anniversary slide variant */
+
+.cc-anniversary .cc-person__headline {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.cc-anniversary__ornament {
+  display: block;
+  font-size: 3.5rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.cc-anniversary .cc-person__name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.1em;
+}

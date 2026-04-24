@@ -1,0 +1,259 @@
+/* CODE COFFEE — Project layout */
+
+.cc-project {
+  background: var(--cc-surface, #ffffff);
+  display: grid;
+  /* Give the team column a bit more width — content sits there */
+  grid-template-columns: 1.75fr 2.9fr;
+  align-items: stretch;
+  padding: 2.75rem 4rem 3.5rem;
+  gap: 2rem 2.5rem;
+  overflow: hidden;
+  --project-title-size: 2.4rem;
+  --project-subtitle-size: 0.95rem;
+  --project-body-size: 0.95rem;
+  --project-body-line-height: 1.55;
+}
+
+.cc-project__left {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 0;
+}
+
+.cc-project__logo {
+  display: block;
+  max-height: 4.25rem;
+  max-width: 12rem;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 1.1rem;
+  align-self: flex-start;
+}
+
+.cc-project__header {
+  margin-bottom: 1.1rem;
+}
+
+.cc-project__title {
+  font-size: var(--project-title-size);
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.cc-project__subtitle {
+  margin-top: 0.6rem;
+  font-size: var(--project-subtitle-size);
+  color: var(--cc-muted);
+  line-height: 1.4;
+}
+
+.cc-project__body {
+  font-size: var(--project-body-size);
+  line-height: var(--project-body-line-height);
+  color: var(--cc-fg);
+}
+
+.cc-project__body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0;
+}
+
+.cc-project__body ul li {
+  position: relative;
+  padding-left: 1.1rem;
+  margin-bottom: 0.55rem;
+}
+
+.cc-project__body ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cc-accent);
+}
+
+.cc-project__body strong {
+  color: var(--cc-accent-soft);
+}
+
+/* Team grid on the right */
+
+.cc-project__right {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--cc-line);
+}
+
+.cc-project__team-label {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cc-muted);
+}
+
+.cc-project__team-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--team-cols, 2), minmax(0, 1fr));
+  gap: var(--team-gap-y, 1rem) var(--team-gap-x, 1rem);
+  align-content: start;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.cc-project__member {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--team-stack-gap, 0.55rem);
+  text-align: left;
+  min-width: 0;
+}
+
+.cc-project__avatar {
+  flex: 0 0 auto;
+  width: var(--team-avatar-size, 6.75rem);
+  height: var(--team-avatar-size, 6.75rem);
+  border-radius: 16%;
+  overflow: hidden;
+  background: rgba(26, 26, 26, 0.08);
+  border: 1px solid var(--cc-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cc-project__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cc-project__avatar-placeholder {
+  font-size: calc(var(--team-avatar-size, 6.75rem) * 0.32);
+  font-weight: 600;
+  color: var(--cc-muted);
+  letter-spacing: 0;
+}
+
+.cc-project__member-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  width: 100%;
+}
+
+.cc-project__member-name {
+  font-size: var(--team-name-size, 1.05rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--cc-bg-soft);
+  word-break: break-word;
+}
+
+.cc-project__member-role {
+  margin-top: 0.2rem;
+  font-size: var(--team-role-size, 0.82rem);
+  color: var(--cc-muted);
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+.cc-project__member.is-client .cc-project__avatar {
+  border-color: rgba(139, 92, 246, 0.55);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.15);
+}
+
+.cc-project__member.is-client .cc-project__member-role::after {
+  content: ' · Client';
+  color: #8b5cf6;
+  font-weight: 600;
+}
+
+/* Size variants driven by team count ---------------------------------------- */
+
+.cc-project__team-grid.size-xl {
+  --team-avatar-size: 12.5rem;
+  --team-name-size: 1.6rem;
+  --team-role-size: 1.05rem;
+  --team-stack-gap: 1rem;
+  --team-gap-y: 1.6rem;
+  --team-gap-x: 1.5rem;
+}
+
+.cc-project__team-grid.size-lg {
+  --team-avatar-size: 9.5rem;
+  --team-name-size: 1.32rem;
+  --team-role-size: 0.95rem;
+  --team-stack-gap: 0.85rem;
+  --team-gap-y: 1.35rem;
+  --team-gap-x: 1.3rem;
+}
+
+.cc-project__team-grid.size-md {
+  --team-avatar-size: 7rem;
+  --team-name-size: 1.08rem;
+  --team-role-size: 0.84rem;
+  --team-stack-gap: 0.65rem;
+  --team-gap-y: 1.15rem;
+  --team-gap-x: 1.1rem;
+}
+
+.cc-project__team-grid.size-sm {
+  --team-avatar-size: 5.5rem;
+  --team-name-size: 0.95rem;
+  --team-role-size: 0.75rem;
+  --team-stack-gap: 0.5rem;
+  --team-gap-y: 1rem;
+  --team-gap-x: 0.95rem;
+}
+
+.cc-project__team-grid.size-xs {
+  --team-avatar-size: 4.75rem;
+  --team-name-size: 0.86rem;
+  --team-role-size: 0.7rem;
+  --team-stack-gap: 0.4rem;
+  --team-gap-y: 0.9rem;
+  --team-gap-x: 0.88rem;
+}
+
+/* Use more of the canvas for low-member teams and compress for larger teams. */
+.cc-project.team-xl,
+.cc-project.team-lg {
+  --project-title-size: 2.8rem;
+  --project-subtitle-size: 1.04rem;
+  --project-body-size: 1.05rem;
+  --project-body-line-height: 1.62;
+}
+
+.cc-project.team-sm {
+  --project-title-size: 2.2rem;
+  --project-subtitle-size: 0.9rem;
+  --project-body-size: 0.9rem;
+  --project-body-line-height: 1.48;
+}
+
+.cc-project.team-xs {
+  --project-title-size: 2rem;
+  --project-subtitle-size: 0.84rem;
+  --project-body-size: 0.82rem;
+  --project-body-line-height: 1.4;
+}

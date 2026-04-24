@@ -1,0 +1,62 @@
+/* CODE COFFEE theme styles */
+
+.cc-cover {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3.5rem 4rem;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(26, 26, 26, 0.08), transparent 45%),
+    linear-gradient(135deg, #ffdd33 0%, #ffcc00 100%);
+}
+
+.cc-cover--with-bg {
+  color: #fff8de;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.cc-cover__bg {
+  position: absolute;
+  inset: -2rem;
+  background-image: var(--cc-cover-bg-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(var(--cc-cover-bg-blur, 14px)) brightness(0.72);
+  transform: scale(1.08);
+  z-index: 0;
+}
+
+.cc-cover__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 70%;
+}
+
+.cc-cover__title {
+  font-size: 5.5rem;
+  line-height: 1.02;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cc-cover__date {
+  margin-top: 1.25rem;
+  font-size: 1.1rem;
+  color: var(--cc-muted);
+  letter-spacing: 0.02em;
+}
+
+.cc-cover--with-bg .cc-cover__date {
+  color: rgba(255, 248, 222, 0.85);
+}
+
+.cc-cover--with-bg .cc-accent {
+  color: #ffdd33;
+}
+
+.cc-cover--with-bg .cc-copyright {
+  color: rgba(255, 248, 222, 0.78);
+  z-index: 1;
+}

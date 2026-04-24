@@ -1,0 +1,16 @@
+{
+  "name": "code-coffee-slidev",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CODE LEAP AG - Code Coffee presentation template, built with Slidev.",
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.50.0",
+    "@slidev/theme-default": "^0.25.0",
+    "vue": "^3.4.0"
+  }
+}
