@@ -5,6 +5,9 @@ dist
 .slidev
 .venv-face
 
+# Slidev CLI PDF exports (regenerate with npm run export; large binaries)
+/slides-export*.pdf
+
 # OS / editor
 .DS_Store
 *.swp

@@ -38,7 +38,7 @@ Behavior:
 3. Inside that year, prefers the latest image file index (for example `... 4.jpg` before `... 1.jpg`).
 4. Uses face detection on that preferred order and picks the first valid face.
 5. Crops to a square portrait with headroom + shoulders.
-6. Exports optimized `1000x1000` JPEG files to the proper output folder (`public/birthdays/` or `public/certifications/`).
+6. Exports `800x800` JPEG avatars (configurable in the script) with quality/subsampling tuned for size to the proper output folder (`public/birthdays/`, `public/certifications/`, etc.).
 
 Selection rule note:
 

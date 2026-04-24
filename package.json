@@ -6,11 +6,15 @@
   "scripts": {
     "build": "slidev build",
     "dev": "slidev --open",
-    "export": "slidev export"
+    "export": "slidev export",
+    "optimize:public": ".venv-face/bin/python3 scripts/optimize_public_images.py"
   },
   "dependencies": {
     "@slidev/cli": "^0.50.0",
     "@slidev/theme-default": "^0.25.0",
     "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.59.1"
   }
 }

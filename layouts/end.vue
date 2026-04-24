@@ -8,8 +8,8 @@ const currentYear = new Date().getFullYear()
 
 <template>
   <div class="cc-layout cc-end">
-    <div v-if="brand !== ''" class="cc-brand">
-      {{ brand || 'CODE_LEAP' }}
+    <div class="cc-end__pitch" aria-hidden="true">
+      <img class="cc-end__pitch-img" src="/pitch.svg" alt="" />
     </div>
     <div class="cc-end__inner">
       <h1 class="cc-end__title">

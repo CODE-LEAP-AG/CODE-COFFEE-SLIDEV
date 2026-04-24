@@ -29,6 +29,7 @@ npm run dev
 | `assets/` | Assets **imported** in Vue (e.g. `assets/cert-logos/*.png` for certification slides). |
 | `code-coffee-contents-and-elements/content/` | Optional narrative copy / outlines (e.g. weekly summary Markdown). |
 | `code-coffee-contents-and-elements/graphics/` | **Not tracked in git** (see below) — local mirror of exported graphics. |
+| `document/*.mid` | Short internal notes (workflows, PDF shrinking, [Python helper scripts](document/python-scripts.mid)). |
 
 ## Layouts (frontmatter `layout:`)
 
@@ -60,11 +61,12 @@ npm run dev
 ## Export & static build
 
 ```bash
-npm run export    # PDF (output path shown in the terminal; often a .pdf in the project root)
-npm run build     # static site in dist/
+npm run export            # PDF (output path shown in the terminal; often a .pdf in the project root)
+npm run build             # static site in dist/
+npm run optimize:public   # compress / downscale JPEG, PNG, WebP under public/ (Python + .venv-face)
 ```
 
-For export options (format, size), see the [Slidev export docs](https://sli.dev/guide/exporting).
+For export options (format, size), see the [Slidev export docs](https://sli.dev/guide/exporting). After export, you can run **`python3 scripts/shrink_pdf.py`** for lossless PDF cleanup ([details](document/pdf-export-shrinking.mid)) — `pip install pymupdf` first. See [document/python-scripts.mid](document/python-scripts.mid) and `scripts/optimize_public_images.py` (`--dry-run`, `--max-edge`, quality).
 
 ## Media & git
 

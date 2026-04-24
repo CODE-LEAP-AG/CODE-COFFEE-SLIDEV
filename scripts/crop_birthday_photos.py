@@ -2,13 +2,15 @@
 """
 Detect the best portrait among configured people groups (birthday + certification),
 crop tightly around the face (with headroom + shoulders), and export consistent
-1000x1000 JPEG avatars to public subfolders.
+square JPEG avatars to public subfolders (size and quality from constants below).
 
 Usage:
     .venv-face/bin/python3 scripts/crop_birthday_photos.py
+    .venv-face/bin/python3 scripts/crop_birthday_photos.py --reencode-only
 """
 from __future__ import annotations
 
+import argparse
 import re
 import sys
 from pathlib import Path
@@ -18,7 +20,11 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 PHOTOS_ROOT = ROOT / "assets" / "individual_photos"
-OUTPUT_SIZE = 1000
+# Max edge length for exported avatars (smaller = smaller PDF when many team faces).
+OUTPUT_SIZE = 800
+JPEG_QUALITY = 80
+# 4:2:0 chroma subsampling — good for photos, smaller files than 4:4:4.
+JPEG_SUBSAMPLING = 2
 
 # (slug, display_name, [candidate_folder_names_relative_to_PHOTOS_ROOT_or_direct_paths])
 # Birthday/certification entries list directories to scan for files beginning
@@ -265,6 +271,41 @@ def pick_preferred_candidate(display_name: str, folders: list[str], all_candidat
     return None
 
 
+def save_avatar(pil: Image.Image, out_path: Path) -> None:
+    """Resize to OUTPUT_SIZE if needed and write a compact progressive JPEG."""
+    if pil.size != (OUTPUT_SIZE, OUTPUT_SIZE):
+        pil = pil.resize((OUTPUT_SIZE, OUTPUT_SIZE), Image.LANCZOS)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    pil.save(
+        out_path,
+        format="JPEG",
+        quality=JPEG_QUALITY,
+        optimize=True,
+        progressive=True,
+        subsampling=JPEG_SUBSAMPLING,
+    )
+
+
+def reencode_set(out_dir: Path, people: list[tuple[str, str, list[str]]]) -> list[str]:
+    """Re-compress existing outputs in public/ (no face detection, no source assets)."""
+    problems: list[str] = []
+    for slug, display_name, _ in people:
+        out_path = out_dir / f"{slug}.jpg"
+        if not out_path.is_file():
+            continue
+        try:
+            with Image.open(out_path) as im:
+                rgb = im.convert("RGB").copy()
+            save_avatar(rgb, out_path)
+            print(
+                f"[reencode] {display_name:18s} -> {out_path.relative_to(ROOT)}  "
+                f"({OUTPUT_SIZE}px, q={JPEG_QUALITY})"
+            )
+        except OSError as e:
+            problems.append(f"{display_name}: {out_path}: {e}")
+    return problems
+
+
 def run_set(out_dir: Path, people: list[tuple[str, str, list[str]]]) -> list[str]:
     out_dir.mkdir(parents=True, exist_ok=True)
     problems: list[str] = []
@@ -298,21 +339,37 @@ def run_set(out_dir: Path, people: list[tuple[str, str, list[str]]]) -> list[str
         # cv2 -> PIL for clean resize + JPEG save
         cropped_rgb = cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB)
         pil = Image.fromarray(cropped_rgb)
-        pil = pil.resize((OUTPUT_SIZE, OUTPUT_SIZE), Image.LANCZOS)
-
         out_path = out_dir / f"{slug}.jpg"
-        pil.save(out_path, format="JPEG", quality=88, optimize=True, progressive=True)
+        save_avatar(pil, out_path)
         print(f"[ok] {display_name:18s} <- {chosen_path.name}  -> {out_path.relative_to(ROOT)}")
 
     return problems
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument(
+        "--reencode-only",
+        action="store_true",
+        help="Only re-compress existing JPGs under public/ (no source photos, no face detection).",
+    )
+    args = ap.parse_args()
+
     all_problems: list[str] = []
-    all_problems.extend(run_set(ROOT / "public" / "birthdays", BIRTHDAY_PEOPLE))
-    all_problems.extend(run_set(ROOT / "public" / "certifications", CERTIFICATION_PEOPLE))
-    all_problems.extend(run_set(ROOT / "public" / "new-member", NEW_MEMBER_PEOPLE))
-    all_problems.extend(run_set(ROOT / "public" / "team", TEAM_PEOPLE))
+    if args.reencode_only:
+        all_problems.extend(reencode_set(ROOT / "public" / "birthdays", BIRTHDAY_PEOPLE))
+        all_problems.extend(
+            reencode_set(ROOT / "public" / "certifications", CERTIFICATION_PEOPLE)
+        )
+        all_problems.extend(reencode_set(ROOT / "public" / "new-member", NEW_MEMBER_PEOPLE))
+        all_problems.extend(reencode_set(ROOT / "public" / "team", TEAM_PEOPLE))
+    else:
+        all_problems.extend(run_set(ROOT / "public" / "birthdays", BIRTHDAY_PEOPLE))
+        all_problems.extend(
+            run_set(ROOT / "public" / "certifications", CERTIFICATION_PEOPLE)
+        )
+        all_problems.extend(run_set(ROOT / "public" / "new-member", NEW_MEMBER_PEOPLE))
+        all_problems.extend(run_set(ROOT / "public" / "team", TEAM_PEOPLE))
 
     if all_problems:
         print("\nIssues:")

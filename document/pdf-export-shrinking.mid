@@ -1,0 +1,69 @@
+# Shrinking the Slidev PDF export
+
+After `npm run export`, Slidev writes `slides-export.pdf` at the project root. Decks with many large images can produce a very large PDF (hundreds of MB). The export itself does not recompress images aggressively; you can post-process in Python with **PyMuPDF** (`pymupdf`).
+
+## Icons, fonts, and vector art
+
+**Use lossless reduction only** if the deck must keep icons, logo marks, and UI-style graphics. Playwright/Chrome PDFs use shared XObjects, patterns, and masks; **PyMuPDF’s `rewrite_images()` re-encodes image streams in ways that can drop or corrupt those resources**, which shows up as missing icons. The file **`slides-export.compressed.pdf` (lossless path below) keeps them.**
+
+To get a much smaller file *and* correct icons, the reliable approach is to **shrink the source images** in `public/` (and any large assets) before `npm run export`, then run **lossless** post-processing. There is no good “aggressive recompress” post-step for this stack that safely preserves all vector/icon content.
+
+## One-time setup
+
+```bash
+python3 -m pip install pymupdf
+```
+
+(Requires a Python 3 environment with `pip`.)
+
+## Script (default: lossless, icons safe)
+
+From the project root (after `npm run export`):
+
+```bash
+python3 scripts/shrink_pdf.py
+# Optional:  python3 scripts/shrink_pdf.py path/to/in.pdf -o path/to/out.pdf
+```
+
+## Lossless size reduction (recommended)
+
+Re-saves the PDF with garbage collection, stream deflation, optional cleanup, and object streams. This is lossless and usually shaves a noticeable amount off without touching image pixels.
+
+**Output in this repo:** `slides-export.compressed.pdf`
+
+```python
+import fitz
+
+src = "slides-export.pdf"
+out = "slides-export.compressed.pdf"
+doc = fitz.open(src)
+doc.save(out, garbage=4, deflate=True, clean=True, use_objstms=1)
+doc.close()
+```
+
+PyMuPDF documents these options in its tutorial and `Document.save` / `ez_save` docs (similar intent to `mutool clean -ggggz`).
+
+## Not recommended: lossy `rewrite_images` (missing icons)
+
+`rewrite_images()` can shrink a PDF a lot, but on **Slidev/Chrome exports it often breaks icons and other graphics** (and MuPDF may log XObject/Pattern errors). **Do not use** for this project unless you accept broken slides.
+
+If you must experiment (same as `python3 scripts/shrink_pdf.py --lossy`):
+
+```python
+import fitz
+
+src = "slides-export.pdf"
+out = "slides-export.smaller.pdf"
+doc = fitz.open(src)
+doc.rewrite_images(quality=80)
+doc.save(out, garbage=4, deflate=True, clean=True, use_objstms=1)
+doc.close()
+```
+
+Prefer **smaller `public/` images + re-export + lossless** `shrink_pdf.py` for a smaller PDF with correct icons.
+
+## See also
+
+- [python-scripts.mid](python-scripts.mid) — index of Python helpers
+- [PyMuPDF documentation](https://pymupdf.readthedocs.io/) — `Document.save`, `Document.rewrite_images`, `Document.ez_save`
+- [Slidev export](https://sli.dev/guide/exporting.html) — `slidev export` and optional browser exporter

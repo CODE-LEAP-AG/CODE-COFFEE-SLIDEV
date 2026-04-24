@@ -4,11 +4,39 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3rem 4rem;
+  padding: 3rem 4rem 5.5rem;
   text-align: center;
-  background:
-    radial-gradient(circle at 50% 110%, rgba(26, 26, 26, 0.14), transparent 55%),
-    linear-gradient(160deg, #ffdd33 0%, #f5c200 100%);
+  background-color: #fff;
+}
+
+/* Full-width art pinned to the slide bottom (avoids background-size quirks with large SVGs). */
+.cc-end__pitch {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cc-end__pitch-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  object-position: bottom;
+  object-fit: contain;
+}
+
+.cc-end .cc-brand,
+.cc-end .cc-end__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.cc-end .cc-copyright {
+  z-index: 1;
 }
 
 .cc-end__title {
