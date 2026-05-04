@@ -45,14 +45,14 @@
 
 .cc-event__subtitle {
   margin-top: 0.75rem;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   color: var(--cc-muted);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .cc-event__body {
-  font-size: 1.05rem;
-  line-height: 1.6;
+  font-size: 1.2rem;
+  line-height: 1.62;
   color: var(--cc-fg);
 }
 
@@ -64,15 +64,15 @@
 
 .cc-event__body ul li {
   position: relative;
-  padding-left: 1.25rem;
-  margin-bottom: 0.65rem;
+  padding-left: 1.35rem;
+  margin-bottom: 0.7rem;
 }
 
 .cc-event__body ul li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.6em;
+  top: 0.65em;
   width: 6px;
   height: 6px;
   border-radius: 50%;

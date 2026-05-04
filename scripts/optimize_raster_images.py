@@ -9,8 +9,8 @@ Recursively optimize raster files under public/ (JPEG, PNG, WebP).
   (rare: resize then replace even if a single recompress is slightly larger).
 
 Usage:
-  .venv-face/bin/python3 scripts/optimize_public_images.py
-  .venv-face/bin/python3 scripts/optimize_public_images.py --dry-run
+  .venv-face/bin/python3 scripts/optimize_raster_images.py
+  .venv-face/bin/python3 scripts/optimize_raster_images.py --dry-run
   npm run optimize:public
 """
 from __future__ import annotations

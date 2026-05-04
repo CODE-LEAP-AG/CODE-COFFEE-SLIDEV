@@ -66,7 +66,7 @@ npm run build             # static site in dist/
 npm run optimize:public   # compress / downscale JPEG, PNG, WebP under public/ (Python + .venv-face)
 ```
 
-For export options (format, size), see the [Slidev export docs](https://sli.dev/guide/exporting). After export, you can run **`python3 scripts/shrink_pdf.py`** for lossless PDF cleanup ([details](document/pdf-export-shrinking.mid)) — `pip install pymupdf` first. See [document/python-scripts.mid](document/python-scripts.mid) and `scripts/optimize_public_images.py` (`--dry-run`, `--max-edge`, quality).
+For export options (format, size), see the [Slidev export docs](https://sli.dev/guide/exporting). After export, you can run **`python3 scripts/shrink_pdf.py`** for lossless PDF cleanup ([details](document/pdf-export-shrinking.mid)) — `pip install pymupdf` first. See [document/python-scripts.mid](document/python-scripts.mid) and `scripts/optimize_raster_images.py` (`--dry-run`, `--max-edge`, quality).
 
 ## Media & git
 

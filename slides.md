@@ -25,7 +25,7 @@ drawings:
 mdc: true
 layout: cover
 date: '24 of April 2026'
-bgImage: /assets/CC_BG.png
+bgImage: /repo-assets/CC_BG.png
 bgBlur: 2
 ---
 
@@ -34,7 +34,7 @@ bgBlur: 2
 name: 'Birthdays (Slide 2)'
 layout: section
 heading: Birthdays
-sectionIcon: /assets/3D/Objects/Gift.png
+sectionIcon: /repo-assets/3D/Objects/Gift.png
 pageNumber: 2
 ---
 
@@ -113,7 +113,7 @@ avatar: /birthdays/thao-mai.jpg
 layout: section
 name: 'Special Celebration (Slide 10)'
 heading: Special Celebration
-sectionIcon: /assets/3D/Objects/Baloon.png
+sectionIcon: /repo-assets/3D/Objects/Baloon.png
 pageNumber: 10
 ---
 
@@ -121,8 +121,9 @@ pageNumber: 10
 ---
 layout: person
 headline: Outstanding Employee in April 2026
-name: TBD
-role: Project // Job title
+name: Chau Luu
+role: Fresher Talent Acquisition
+avatar: /player-one/chau-luu.jpg
 pageNumber: 11
 emoji: 🏆
 ---
@@ -197,7 +198,7 @@ logo: React
 layout: section
 name: 'Team Sharing (Slide 17)'
 heading: Team Sharing
-sectionIcon: /assets/3D/Objects/Chat.png
+sectionIcon: /repo-assets/3D/Objects/Chat.png
 pageNumber: 17
 ---
 
@@ -207,7 +208,7 @@ layout: event
 name: 'Sharing by Sieu Nguyen (Slide 18)'
 heading: Sharing by Sieu Nguyen
 subtitle: 'Topic: Rider — an excellent IDE for C# developers'
-image: /assets/sharing-session/sieu-sharing.png
+image: /cc-graphics/team-sharing/Sieu%20Nguyen-sharing.jpg
 pageNumber: 18
 ---
 
@@ -221,7 +222,7 @@ layout: event
 name: 'Sharing by Viet Vo (Slide 19)'
 heading: Sharing by Viet Vo
 subtitle: 'Topic: What Happens When 10,000 Users Show Up at Once?'
-image: /assets/sharing-session/viet-sharing.png
+image: /cc-graphics/team-sharing/Viet%20Vo-sharing.jpg
 pageNumber: 19
 ---
 
@@ -235,7 +236,7 @@ layout: event
 name: 'Sharing by Tuan Nguyen (Slide 20)'
 heading: Sharing by Tuan Nguyen
 subtitle: 'Topic: How I Use Claude Code Every Day'
-image: /assets/sharing-session/tuan-sharing.png
+image: /cc-graphics/team-sharing/Tuan%20Nguyen-sharing.jpg
 pageNumber: 20
 ---
 
@@ -249,17 +250,20 @@ layout: event
 name: 'Sharing by Kiet Huynh (Slide 21)'
 heading: Sharing by Kiet Huynh
 subtitle: 'Topic: Why Your Website Is Actually Unusable (To Some People) — Accessibility Deep Dive'
+image: /cc-graphics/team-sharing/Kiet%20Huynh-sharing.jpg
 pageNumber: 21
 ---
 
-- Topic to be confirmed
+- Introduction to web accessibility and inclusive design principles
+- Explained key concepts like WCAG standards, semantic HTML, and assistive technologies
+- Demonstrated how proper implementation improves usability, reach, and overall user experience
 
 
 ---
 layout: section
 name: 'Team Updates (Slide 22)'
 heading: Team Updates
-sectionIcon: /assets/3D/Objects/Calendar.png
+sectionIcon: /repo-assets/3D/Objects/Calendar.png
 pageNumber: 22
 ---
 
@@ -289,11 +293,13 @@ emoji: 👋
 
 
 ---
-layout: event
+layout: office-update
 name: 'Welcome Lunch (Slide 25)'
 heading: Welcome Lunch
 subtitle: Saying hi to our new CODE LEAPERS
-image: /new-member/welcome-lunch-nghia.jpg
+images:
+  - /new-member/welcome-lunch-nghia.jpg
+  - /new-member/welcome-lunch-tam.jpg
 pageNumber: 25
 ---
 
@@ -316,7 +322,7 @@ emoji: 🎊
 layout: section
 name: 'Anniversaries (Slide 27)'
 heading: Anniversaries
-sectionIcon: /assets/3D/Objects/Heart.png
+sectionIcon: /repo-assets/3D/Objects/Heart.png
 pageNumber: 27
 ---
 
@@ -391,7 +397,7 @@ emoji: 🎂
 layout: section
 name: 'Promotion (Slide 34)'
 heading: Promotion
-sectionIcon: /assets/3D/Objects/Star.png
+sectionIcon: /repo-assets/3D/Objects/Star.png
 pageNumber: 34
 ---
 
@@ -422,7 +428,7 @@ emoji: ⭐
 layout: section
 name: 'Player One Ready (Slide 37)'
 heading: Player One Ready
-sectionIcon: /assets/3D/Objects/Gamepad.png
+sectionIcon: /repo-assets/3D/Objects/Gamepad.png
 pageNumber: 37
 ---
 
@@ -453,23 +459,21 @@ emoji: 🎮
 layout: section
 name: 'Quarterly Team Event (Slide 40)'
 heading: Quarterly Team Event
-sectionIcon: /assets/3D/Objects/Baloon.png
+sectionIcon: /repo-assets/3D/Objects/Baloon.png
 pageNumber: 40
 ---
 
 
 ---
-layout: people
+layout: office-update
 name: 'Team Events for Q2 2026 (Slide 41)'
 heading: Team Events for Q2 2026
+subtitle: Tolerant Team · ainavio Team · keySquare Team
+images:
+  - /team-events/Tolerant-team-events.jpg
+  - /team-events/ainavio-team-events.jpg
+  - /team-events/keySquare-team-events.jpg
 pageNumber: 41
-people:
-  - name: Tolerant Team
-    team: Q2 2026
-  - name: ainavio Team
-    team: Q2 2026
-  - name: keySquare Team
-    team: Q2 2026
 ---
 
 
@@ -477,7 +481,7 @@ people:
 layout: section
 name: 'Project Updates (Slide 42)'
 heading: Project Updates
-sectionIcon: /assets/3D/Objects/Piechart.png
+sectionIcon: /repo-assets/3D/Objects/Piechart.png
 pageNumber: 42
 ---
 
@@ -486,26 +490,38 @@ pageNumber: 42
 layout: project
 name: 'GEDAT (Slide 43)'
 heading: GEDAT
-subtitle: 'Team Lead: Malte Götz (Solution Architect)'
+subtitle: 'March release on time · May Landing Page · Spec Driven Development & AI adoption'
 image: /projects/gedat.jpg
 pageNumber: 43
 team:
   - name: Travis Le
+    role: Advanced Frontend Engineer
     avatar: /team/travis-le.jpg
   - name: Sieu Nguyen
+    role: Fresher Fullstack Engineer
     avatar: /team/sieu-nguyen.jpg
   - name: Anh Truong
+    role: Junior UI/UX Designer
     avatar: /team/anh-truong.jpg
   - name: Hien Vuong
+    role: Fresher DevOps Engineer
     avatar: /team/hien-vuong.jpg
   - name: Anh Tran
+    role: Fresher Backend Engineer
     avatar: /team/anh-tran.jpg
   - name: Michael Nguyen
+    role: Intern Quality Engineer
     avatar: /team/michael-nguyen.jpg
   - name: Thanh Nguyen
+    role: Advanced Frontend Engineer
     avatar: /team/thanh-nguyen.jpg
   - name: Nathan Nguyen
+    role: Team Lead
     avatar: /team/nathan-nguyen.jpg
+  - name: Malte Götz
+    role: Solution Architect
+    coduct: true
+    avatar: /team/malte-goetz.png
 ---
 
 - Successfully delivered the **March Release** on time
@@ -520,6 +536,7 @@ heading: JTL — Cloud Platform
 subtitle: Q1 Deliverables
 image: /projects/jtl.png
 pageNumber: 44
+bodySize: xl
 team:
   - name: Thao Mai
     role: Product Owner
@@ -540,10 +557,10 @@ team:
     role: Senior Fullstack Engineer
     avatar: /team/hoang-dinh.jpg
   - name: Quyen Nguyen
-    role: Fresher Backend Engineer
+    role: Junior Backend Engineer
     avatar: /team/quyen-nguyen.jpg
   - name: Kane Vo
-    role: Fresher Backend Engineer
+    role: Junior Backend Engineer
     avatar: /team/kane-vo.jpg
   - name: Tuan Nguyen
     role: Advanced Backend Engineer
@@ -551,15 +568,24 @@ team:
   - name: Phi Luong
     role: Senior Backend Engineer
     avatar: /team/phi-luong.jpg
+  - name: Quang Pham
+    role: Junior Frontend Engineer
+    avatar: /team/quang-pham.jpg
+  - name: John Nguyen
+    role: Junior Backend Engineer
+    avatar: /team/john-nguyen.jpg
   - name: Clara-Marie Kückelhaus
     role: Project Manager
-    client: true
+    coduct: true
+    avatar: /team/clara-marie-kuckelhaus.jpg
   - name: Hong Kai Len
     role: Business Analyst
-    client: true
+    coduct: true
+    avatar: /team/hong-kai-len.jpg
   - name: Markus Fleischer
     role: Frontend Engineer
-    client: true
+    coduct: true
+    avatar: /team/markus-fleischer.png
 ---
 
 - Delivered **App Manifest 2.0**, optimized **App Installation**, and refined **App Lifecycle** flows
@@ -574,6 +600,7 @@ heading: JTL — WMS Dashboard
 subtitle: Real-time warehouse operations dashboard
 image: /projects/jtl-wms.png
 pageNumber: 45
+bodySize: lg
 team:
   - name: Tony Nguyen
     role: Advanced Frontend Engineer
@@ -586,7 +613,6 @@ team:
     avatar: /team/hoang-dinh.jpg
   - name: Stefan Kull
     role: Project Manager
-    client: true
     avatar: /team/stefan-kull.jpg
 ---
 
@@ -597,11 +623,12 @@ team:
 
 
 ---
-layout: event
+layout: project
 name: 'JTL — PACON Preparation (Slide 46)'
 heading: JTL — PACON Preparation
 subtitle: Polishing the Cloud Platform for a live showcase
 image: /projects/jtl.png
+heroImage: /projects/pacon.jpg
 pageNumber: 46
 ---
 
@@ -619,8 +646,10 @@ pageNumber: 47
 team:
   - name: Nam Ho
     role: Interim Chief Technology Officer at Evolution
+    avatar: /team/nam-ho.jpg
   - name: Avery Dao
     role: Product Owner
+    avatar: /team/avery-dao.png
   - name: Trung Tran
     role: Fresher AI Engineer
     avatar: /team/trung-tran.jpg
@@ -633,10 +662,10 @@ team:
 
 ---
 layout: project
-name: 'MaiVita GmBH (Slide 48)'
-heading: MaiVita GmBH
+name: 'MaiVita GmbH (Slide 48)'
+heading: MaiVita GmbH
 subtitle: New client onboarded — taking over from Limeup
-image: /projects/maivita.jpeg
+image: /projects/maivita.png
 pageNumber: 48
 team:
   - name: Phuc Le
@@ -672,11 +701,20 @@ team:
     role: Fresher AI Engineer
     avatar: /team/trung-tran.jpg
   - name: Thanh Hoang
-    role: Fresher AI Engineer
+    role: Junior AI Engineer
     avatar: /team/thanh-hoang.jpg
   - name: Viet Vo
     role: Intern DevOps Engineer
     avatar: /team/viet-vo.jpg
+  - name: Connor Nguyen
+    role: Fresher Frontend Engineer
+    avatar: /certifications/connor-nguyen.jpg
+  - name: Thach Huynh
+    role: Advanced Frontend Engineer
+    avatar: /team/thach-huynh.jpg
+  - name: Kiet Huynh
+    role: Advanced Frontend Engineer
+    avatar: /team/kiet-huynh.jpg
 ---
 
 - **Sprint 3 completed:** auth flow & team management
@@ -690,6 +728,7 @@ name: 'Tolerant — Project Ended (Slide 50)'
 heading: Tolerant — Project Ended
 subtitle: A reflection and takeaways
 pageNumber: 50
+noImage: true
 ---
 
 - **What happened:** terminated due to misaligned expectations and budget understanding for the defined scope
@@ -703,6 +742,7 @@ layout: event
 name: 'Martin Vinh — e2e Connect (Slide 51)'
 heading: Martin Vinh — e2e Connect
 subtitle: 'Stuttgart · hosted by CarByte and partners'
+image: /out-of-office/martin-vinh-e2e.jpg
 pageNumber: 51
 ---
 
@@ -716,7 +756,7 @@ pageNumber: 51
 name: 'Travel News (Slide 52)'
 layout: section
 heading: Travel News
-sectionIcon: /assets/3D/Objects/Plane.png
+sectionIcon: /repo-assets/3D/Objects/Plane.png
 pageNumber: 52
 ---
 
@@ -747,7 +787,7 @@ emoji: ✈️
 layout: section
 name: 'Office Updates (Slide 55)'
 heading: Office Updates
-sectionIcon: /assets/3D/Objects/Folder.png
+sectionIcon: /repo-assets/3D/Objects/Folder.png
 pageNumber: 55
 ---
 
@@ -767,31 +807,29 @@ pageNumber: 56
 
 
 ---
-layout: event
+layout: office-update
 name: 'Annual Health Checkup (Slide 57)'
 heading: Annual Health Checkup
 subtitle: Photo recap
-image: /office-updates/health-check-1.jpg
+images:
+  - /office-updates/health-check-1.jpg
+  - /office-updates/health-check-2.jpg
+  - /office-updates/health-check-3.jpg
 pageNumber: 57
 ---
 
-- Team participation from the annual health checkup session
-- On-site setup and check-in moments from the day
-- Highlights from the health checkup activities
-
 
 ---
-layout: event
+layout: office-update
 name: "CODE LEAP's 5th Anniversary (Slide 58)"
 heading: CODE LEAP's 5th Anniversary
 subtitle: Event highlights
-image: /office-updates/anniversary-1.jpg
+images:
+  - /office-updates/anniversary-1.jpg
+  - /office-updates/anniversary-2.jpg
+  - /office-updates/anniversary-3.jpg
 pageNumber: 58
 ---
-
-- Activities from CODE LEAP's 5th anniversary celebration
-- Team moments and candid event highlights
-- Celebration highlights from the anniversary event
 
 
 ---
@@ -827,7 +865,7 @@ pageNumber: 60
 layout: section
 name: 'Announcements (Slide 61)'
 heading: Announcements
-sectionIcon: /assets/3D/Objects/Bulb.png
+sectionIcon: /repo-assets/3D/Objects/Bulb.png
 pageNumber: 61
 ---
 
@@ -853,6 +891,7 @@ layout: event
 name: 'Project Baseline Initiative (Slide 63)'
 heading: Project Baseline Initiative
 subtitle: Internal surveys — structured baseline across company and projects
+image: /repo-assets/3D/Characters/Mail.png
 pageNumber: 63
 ---
 
@@ -881,7 +920,7 @@ pageNumber: 64
 layout: section
 name: 'Open jobs (Slide 65)'
 heading: Open jobs
-sectionIcon: /assets/3D/Objects/Flag.png
+sectionIcon: /repo-assets/3D/Objects/Flag.png
 pageNumber: 65
 ---
 
@@ -891,12 +930,13 @@ layout: event
 name: "We're hiring (Slide 66)"
 heading: We're hiring
 subtitle: JOIN OUR TEAM — positions marked (***) come with a $500 referral bonus on passing probation.
+image: /announcements/company-photo-2026.jpg
 pageNumber: 66
 ---
 
 - Solution Architect (Python + AWS) **(\*\*\*)**
-- Sr BE Engineer (.NET + Azure) **(\*\*\*)**
-- Sr FE Engineer (ReactJS)
+- Senior BE Engineer (.NET + Azure) **(\*\*\*)**
+- Senior FE Engineer (ReactJS)
 - FE Engineer (Angular)
 - Fullstack Engineer (BE focused, TypeScript)
 - Business Analyst
@@ -908,6 +948,7 @@ layout: event
 name: 'Hung Kings Commemoration Day (Vietnam) (Slide 67)'
 heading: Hung Kings Commemoration Day (Vietnam)
 subtitle: 'On: Mon, 27.04.2026 · VN off · DE working'
+image: /holidays/hung-kings.jpg
 pageNumber: 67
 ---
 
@@ -980,6 +1021,7 @@ layout: event
 name: 'Bánh Ép (Slide 72)'
 heading: Bánh Ép
 subtitle: On Fri, 24.04.2026 — after Code Coffee
+image: /cc-graphics/Banh%20ep.png
 pageNumber: 72
 ---
 

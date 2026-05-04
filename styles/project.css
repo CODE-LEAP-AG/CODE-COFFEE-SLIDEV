@@ -10,9 +10,10 @@
   gap: 2rem 2.5rem;
   overflow: hidden;
   --project-title-size: 2.4rem;
-  --project-subtitle-size: 0.95rem;
-  --project-body-size: 0.95rem;
-  --project-body-line-height: 1.55;
+  --project-subtitle-size: 1.05rem;
+  --project-body-size: 1.4rem;
+  --project-body-line-height: 1.65;
+  --project-bullet-size: 8px;
 }
 
 .cc-project__left {
@@ -67,17 +68,17 @@
 
 .cc-project__body ul li {
   position: relative;
-  padding-left: 1.1rem;
-  margin-bottom: 0.55rem;
+  padding-left: 1.4rem;
+  margin-bottom: 0.8rem;
 }
 
 .cc-project__body ul li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.55em;
-  width: 6px;
-  height: 6px;
+  top: 0.5em;
+  width: var(--project-bullet-size, 8px);
+  height: var(--project-bullet-size, 8px);
   border-radius: 50%;
   background: var(--cc-accent);
 }
@@ -98,6 +99,28 @@
   min-height: 0;
   padding-left: 1.5rem;
   border-left: 1px solid var(--cc-line);
+}
+
+.cc-project__right--hero {
+  justify-content: center;
+}
+
+.cc-project__hero {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cc-project__hero img {
+  width: 100%;
+  height: 100%;
+  max-height: min(28rem, 72vh);
+  object-fit: cover;
+  border-radius: 0.75rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.14);
 }
 
 .cc-project__team-label {
@@ -129,8 +152,8 @@
 
 .cc-project__avatar {
   flex: 0 0 auto;
-  width: var(--team-avatar-size, 6.75rem);
-  height: var(--team-avatar-size, 6.75rem);
+  width: var(--team-avatar-size, 8.25rem);
+  height: var(--team-avatar-size, 8.25rem);
   border-radius: 16%;
   overflow: hidden;
   background: rgba(26, 26, 26, 0.08);
@@ -148,7 +171,7 @@
 }
 
 .cc-project__avatar-placeholder {
-  font-size: calc(var(--team-avatar-size, 6.75rem) * 0.32);
+  font-size: calc(var(--team-avatar-size, 8.25rem) * 0.32);
   font-weight: 600;
   color: var(--cc-muted);
   letter-spacing: 0;
@@ -188,10 +211,15 @@
   font-weight: 600;
 }
 
+/* Coduct / partner: purple name, default avatar frame, no “Client” suffix */
+.cc-project__member.is-coduct .cc-project__member-name {
+  color: #7c3aed;
+}
+
 /* Size variants driven by team count ---------------------------------------- */
 
 .cc-project__team-grid.size-xl {
-  --team-avatar-size: 12.5rem;
+  --team-avatar-size: 15.25rem;
   --team-name-size: 1.6rem;
   --team-role-size: 1.05rem;
   --team-stack-gap: 1rem;
@@ -200,7 +228,7 @@
 }
 
 .cc-project__team-grid.size-lg {
-  --team-avatar-size: 9.5rem;
+  --team-avatar-size: 11.75rem;
   --team-name-size: 1.32rem;
   --team-role-size: 0.95rem;
   --team-stack-gap: 0.85rem;
@@ -209,7 +237,7 @@
 }
 
 .cc-project__team-grid.size-md {
-  --team-avatar-size: 7rem;
+  --team-avatar-size: 8.5rem;
   --team-name-size: 1.08rem;
   --team-role-size: 0.84rem;
   --team-stack-gap: 0.65rem;
@@ -218,7 +246,7 @@
 }
 
 .cc-project__team-grid.size-sm {
-  --team-avatar-size: 5.5rem;
+  --team-avatar-size: 6.75rem;
   --team-name-size: 0.95rem;
   --team-role-size: 0.75rem;
   --team-stack-gap: 0.5rem;
@@ -227,7 +255,7 @@
 }
 
 .cc-project__team-grid.size-xs {
-  --team-avatar-size: 4.75rem;
+  --team-avatar-size: 5.75rem;
   --team-name-size: 0.86rem;
   --team-role-size: 0.7rem;
   --team-stack-gap: 0.4rem;
@@ -239,21 +267,43 @@
 .cc-project.team-xl,
 .cc-project.team-lg {
   --project-title-size: 2.8rem;
-  --project-subtitle-size: 1.04rem;
-  --project-body-size: 1.05rem;
-  --project-body-line-height: 1.62;
+  --project-subtitle-size: 1.1rem;
+  --project-body-size: 1.5rem;
+  --project-body-line-height: 1.66;
+  --project-bullet-size: 9px;
 }
 
 .cc-project.team-sm {
   --project-title-size: 2.2rem;
-  --project-subtitle-size: 0.9rem;
-  --project-body-size: 0.9rem;
-  --project-body-line-height: 1.48;
+  --project-subtitle-size: 0.98rem;
+  --project-body-size: 1.28rem;
+  --project-body-line-height: 1.58;
+  --project-bullet-size: 8px;
 }
 
 .cc-project.team-xs {
   --project-title-size: 2rem;
-  --project-subtitle-size: 0.84rem;
-  --project-body-size: 0.82rem;
-  --project-body-line-height: 1.4;
+  --project-subtitle-size: 0.92rem;
+  --project-body-size: 1.12rem;
+  --project-body-line-height: 1.52;
+  --project-bullet-size: 7px;
+}
+
+/* Optional per-slide body list emphasis (frontmatter bodySize) */
+.cc-project.body-lg {
+  --project-body-size: calc(var(--project-body-size, 1.4rem) + 0.18rem);
+  --project-body-line-height: 1.68;
+  --project-bullet-size: calc(var(--project-bullet-size, 8px) + 2px);
+}
+
+.cc-project.body-xl {
+  --project-body-size: calc(var(--project-body-size, 1.4rem) + 0.3rem);
+  --project-body-line-height: 1.72;
+  --project-bullet-size: calc(var(--project-bullet-size, 8px) + 3px);
+}
+
+.cc-project.body-sm {
+  --project-body-size: calc(var(--project-body-size, 1.4rem) - 0.22rem);
+  --project-body-line-height: 1.58;
+  --project-bullet-size: max(5px, calc(var(--project-bullet-size, 8px) - 2px));
 }

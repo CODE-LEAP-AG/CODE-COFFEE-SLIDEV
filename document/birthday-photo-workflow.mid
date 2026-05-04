@@ -22,6 +22,7 @@ Input folders:
 
 - `assets/individual_photos/Individual Photos 2026/`
 - `assets/individual_photos/Individual Photos 2025/`
+- `assets/individual_photos/Individual Photos 2024/`
 
 The crop script scans candidates by matching the person name prefix (for example `Daniel Tran`).
 
@@ -29,7 +30,7 @@ The crop script scans candidates by matching the person name prefix (for example
 
 Script:
 
-- `scripts/crop_birthday_photos.py`
+- `scripts/generate_public_avatars.py`
 
 Behavior:
 
@@ -49,7 +50,7 @@ Selection rule note:
 ## Re-run command
 
 ```bash
-.venv-face/bin/python3 scripts/crop_birthday_photos.py
+.venv-face/bin/python3 scripts/generate_public_avatars.py
 ```
 
 ## Birthday avatar mapping
@@ -70,7 +71,7 @@ Selection rule note:
 
 ## Project team avatar mapping
 
-Generated into `public/team/` via `TEAM_PEOPLE` in `scripts/crop_birthday_photos.py`.
+Generated into `public/team/` via `TEAM_PEOPLE` in `scripts/generate_public_avatars.py`.
 Referenced from `slides.md` on `layout: project` entries as `team[*].avatar: /team/<slug>.jpg`.
 
 GEDAT:
@@ -107,7 +108,8 @@ JTL — WMS Dashboard:
 
 DAWN × Evolution:
 
-- Nam Ho, Avery Dao — no source photo yet (initial fallback renders)
+- Nam Ho -> `/team/nam-ho.jpg` (from `Individual Photos 2024`)
+- Avery Dao — no source photo yet (initial fallback renders)
 - Trung Tran -> `/team/trung-tran.jpg`
 
 MaiVita:
@@ -124,4 +126,4 @@ CODE LEAP Clockify:
 - Thanh Hoang -> `/team/thanh-hoang.jpg`
 - Viet Vo -> `/team/viet-vo.jpg`
 
-To add a new person: drop their photo into `assets/individual_photos/Individual Photos 2026/` (or 2025) with the filename prefixed by their display name (e.g. `Jane Doe 1.jpg`), add a `("jane-doe", "Jane Doe", [...])` entry to `TEAM_PEOPLE`, then re-run the crop script.
+To add a new person: drop their photo into `assets/individual_photos/Individual Photos 2026/` (or fallback years like 2025/2024) with the filename prefixed by their display name (e.g. `Jane Doe 1.jpg`), add a `("jane-doe", "Jane Doe", [...])` entry to `TEAM_PEOPLE`, then re-run the avatar script.

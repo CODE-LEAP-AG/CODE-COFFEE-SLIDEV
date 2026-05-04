@@ -25,27 +25,12 @@ __pycache__/
 .env
 .env.*
 
-# --- Large / binary media (add on each machine; keep the repo text-only) ---
-
-# Slide photos, project images, avatars, etc. served as `/...` (see `public/`)
-public/**/*.avif
-public/**/*.gif
-public/**/*.jpeg
-public/**/*.jpg
-public/**/*.png
-public/**/*.webp
-public/**/.DS_Store
-
-# App-level raster assets (backgrounds, 3D props, one-off photos). Keep small PNGs
-# used by layouts under `assets/cert-logos/`.
-assets/**/*.avif
-assets/**/*.gif
-assets/**/*.jpeg
-assets/**/*.jpg
-assets/**/*.png
-assets/**/*.webp
-!assets/cert-logos/*.png
-assets/individual_photos/
+# Media and Slidev static tree (large binaries; keep locally; not tracked)
+/assets/*
+/public/*
+!/public/fonts/
+!/public/fonts/**
+!/public/pitch.svg
 
 # Parallel “content pack” (mirrors/exports of media); markdown under `content/` is fine
 code-coffee-contents-and-elements/graphics/

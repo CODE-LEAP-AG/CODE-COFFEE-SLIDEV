@@ -6,15 +6,22 @@ interface TeamMember {
   role?: string
   avatar?: string
   client?: boolean
+  /** Coduct / partner — purple name, no “Client” label or badge frame */
+  coduct?: boolean
 }
 
 const props = defineProps<{
   heading?: string
   subtitle?: string
+  /** Client / project logo (small, top of left column) */
   image?: string
+  /** Large photo in the right column when there is no team roster */
+  heroImage?: string
   team?: TeamMember[]
   pageNumber?: number | string
   brand?: string
+  /** Override left-column list / bullet scale (e.g. dense vs. emphatic slides) */
+  bodySize?: 'sm' | 'lg' | 'xl'
 }>()
 
 const currentYear = new Date().getFullYear()
@@ -31,6 +38,7 @@ const teamLayout = computed(() => {
   const count = props.team?.length ?? 0
   // cols + size variant — balance columns vs. per-card real estate so small
   // teams get big, poster-style cards and large teams stay legible.
+  if (count === 0) return { cols: 1, size: 'lg' }
   if (count <= 1) return { cols: 1, size: 'xl' }
   if (count <= 2) return { cols: 2, size: 'xl' }
   if (count <= 3) return { cols: 3, size: 'lg' }
@@ -48,7 +56,13 @@ function initial(name: string) {
 </script>
 
 <template>
-  <div class="cc-layout cc-project" :class="`team-${teamLayout.size}`">
+  <div
+    class="cc-layout cc-project"
+    :class="[
+      `team-${teamLayout.size}`,
+      bodySize ? `body-${bodySize}` : '',
+    ]"
+  >
     <img class="cc-event__pitch" src="/pitch.svg" alt="" aria-hidden="true" />
     <div v-if="brand !== ''" class="cc-brand">
       {{ brand || 'CODE_LEAP' }}
@@ -72,28 +86,37 @@ function initial(name: string) {
       </div>
     </div>
 
-    <aside v-if="team && team.length" class="cc-project__right">
-      <h3 class="cc-project__team-label">Team<span class="cc-accent">_</span></h3>
-      <div
-        class="cc-project__team-grid"
-        :class="`size-${teamLayout.size}`"
-        :style="{ '--team-cols': teamLayout.cols }"
-      >
+    <aside
+      v-if="(team && team.length) || heroImage"
+      class="cc-project__right"
+      :class="{ 'cc-project__right--hero': heroImage && !(team && team.length) }"
+    >
+      <template v-if="team && team.length">
+        <h3 class="cc-project__team-label">Team<span class="cc-accent">_</span></h3>
         <div
-          v-for="p in team"
-          :key="p.name"
-          class="cc-project__member"
-          :class="{ 'is-client': p.client }"
+          class="cc-project__team-grid"
+          :class="`size-${teamLayout.size}`"
+          :style="{ '--team-cols': teamLayout.cols }"
         >
-          <div class="cc-project__avatar">
-            <img v-if="p.avatar" :src="p.avatar" :alt="p.name" />
-            <span v-else class="cc-project__avatar-placeholder">{{ initial(p.name) }}</span>
-          </div>
-          <div class="cc-project__member-text">
-            <div class="cc-project__member-name">{{ p.name }}</div>
-            <div v-if="p.role" class="cc-project__member-role">{{ p.role }}</div>
+          <div
+            v-for="p in team"
+            :key="p.name"
+            class="cc-project__member"
+            :class="{ 'is-client': p.client, 'is-coduct': p.coduct }"
+          >
+            <div class="cc-project__avatar">
+              <img v-if="p.avatar" :src="p.avatar" :alt="p.name" />
+              <span v-else class="cc-project__avatar-placeholder">{{ initial(p.name) }}</span>
+            </div>
+            <div class="cc-project__member-text">
+              <div class="cc-project__member-name">{{ p.name }}</div>
+              <div v-if="p.role" class="cc-project__member-role">{{ p.role }}</div>
+            </div>
           </div>
         </div>
+      </template>
+      <div v-else-if="heroImage" class="cc-project__hero">
+        <img :src="heroImage" :alt="heading" />
       </div>
     </aside>
 

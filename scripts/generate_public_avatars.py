@@ -5,8 +5,8 @@ crop tightly around the face (with headroom + shoulders), and export consistent
 square JPEG avatars to public subfolders (size and quality from constants below).
 
 Usage:
-    .venv-face/bin/python3 scripts/crop_birthday_photos.py
-    .venv-face/bin/python3 scripts/crop_birthday_photos.py --reencode-only
+    .venv-face/bin/python3 scripts/generate_public_avatars.py
+    .venv-face/bin/python3 scripts/generate_public_avatars.py --reencode-only
 """
 from __future__ import annotations
 
@@ -51,7 +51,7 @@ NEW_MEMBER_PEOPLE = [
 ]
 
 # Portraits used on the `project` layout's team grid. Folder order controls the
-# "prefer latest year" selection policy (2026 first, then 2025 fallback).
+# "prefer latest year" selection policy (for example 2026, then 2025, then 2024).
 TEAM_PEOPLE = [
     # GEDAT
     ("travis-le", "Travis Le", ["Individual Photos 2026"]),
@@ -73,11 +73,17 @@ TEAM_PEOPLE = [
     ("kane-vo", "Kane Vo", ["Individual Photos 2025"]),
     ("tuan-nguyen", "Tuan Nguyen", ["Individual Photos 2026"]),
     ("phi-luong", "Phi Luong", ["Individual Photos 2026"]),
+    ("quang-pham", "Quang Pham", ["Individual Photos 2024"]),
+    ("john-nguyen", "John Nguyen", ["Individual Photos 2026"]),
+    # Coduct (JTL Cloud Platform) — source portraits under assets/coduct/
+    ("clara-marie-kuckelhaus", "Clara-Marie Kückelhaus", ["assets/coduct/Clara.png"]),
+    ("hong-kai-len", "Hong Kai Len", ["assets/coduct/Hong Kai.png"]),
     # JTL — WMS Dashboard
     ("tony-nguyen", "Tony Nguyen", ["Individual Photos 2026"]),
     ("kiet-huynh", "Kiet Huynh", ["Individual Photos 2026"]),
     ("stefan-kull", "Stefan Kull", ["Individual Photos 2026"]),
     # DAWN × Evolution
+    ("nam-ho", "Nam Ho", ["Individual Photos 2026", "Individual Photos 2025", "Individual Photos 2024"]),
     ("trung-tran", "Trung Tran", ["Individual Photos 2026"]),
     # MaiVita
     ("linh-pham", "Linh Pham", ["Individual Photos 2025"]),

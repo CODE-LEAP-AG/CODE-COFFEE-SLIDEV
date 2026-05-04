@@ -64,15 +64,15 @@
 .cc-person__meta {
   margin: 0.5rem 0 0;
   color: var(--cc-muted);
-  font-size: 1.05rem;
-  line-height: 1.5;
+  font-size: 1.12rem;
+  line-height: 1.55;
 }
 
 .cc-person__body {
   margin-top: 1rem;
   color: var(--cc-muted);
-  font-size: 1rem;
-  line-height: 1.55;
+  font-size: 1.12rem;
+  line-height: 1.6;
 }
 
 .cc-person__highlight {

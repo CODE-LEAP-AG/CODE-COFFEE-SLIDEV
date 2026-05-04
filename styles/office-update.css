@@ -1,0 +1,107 @@
+/* CODE COFFEE — Office Update (gallery) layout */
+
+.cc-office-update {
+  background: var(--cc-surface, #ffffff);
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 4rem 4rem;
+  gap: 1.75rem;
+  overflow: hidden;
+}
+
+.cc-office-update__pitch {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  opacity: 0.45;
+  mix-blend-mode: multiply;
+}
+
+.cc-office-update__header {
+  position: relative;
+  z-index: 1;
+}
+
+.cc-office-update__title {
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.cc-office-update__subtitle {
+  margin-top: 0.6rem;
+  font-size: 1.12rem;
+  color: var(--cc-muted);
+  line-height: 1.45;
+}
+
+.cc-office-update__body {
+  position: relative;
+  z-index: 1;
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--cc-fg);
+}
+
+.cc-office-update__body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0;
+}
+
+.cc-office-update__body ul li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.65rem;
+}
+
+.cc-office-update__body ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cc-accent);
+}
+
+.cc-office-update__body strong {
+  color: var(--cc-accent-soft);
+}
+
+.cc-office-update__gallery {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  display: grid;
+  gap: 1.25rem;
+  min-height: 0;
+}
+
+.cc-office-update__gallery.cols-1 { grid-template-columns: 1fr; }
+.cc-office-update__gallery.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.cc-office-update__gallery.cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+.cc-office-update__frame {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: rgba(0, 0, 0, 0.04);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.14);
+}
+
+.cc-office-update__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
