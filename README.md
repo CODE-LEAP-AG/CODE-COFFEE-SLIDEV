@@ -4,19 +4,45 @@ Weekly **Code Coffee** all-hands deck for **CODE LEAP AG**, built with [Slidev](
 
 ## Prerequisites
 
-- **Node.js** 18+ (20 LTS is fine)
-- **npm** 9+ (comes with Node)
+| Requirement | Notes |
+|-------------|--------|
+| **Node.js** 18+ | 20 LTS is fine. Check with `node -v`. |
+| **npm** 9+ | Bundled with Node; check with `npm -v`. |
+| **Python** 3.10+ | Needed for optional helper scripts and for `npm run optimize:public`. Check with `python3 --version`. |
+
+You only need Python if you will run scripts under [`scripts/`](scripts/) or `npm run optimize:public`. Slidev itself is Node-only.
 
 ## Quick start
 
 ```bash
+git clone <repository-url> CODE-COFFEE-Slidev
 cd CODE-COFFEE-Slidev
 npm install
 npm run dev
 ```
 
-- Dev server (default: <http://localhost:3030>) opens in the browser; editing `slides.md` or theme files **hot-reloads** the deck.
-- Use the **[Slidev](https://sli.dev)** UI: present mode, dark mode, recording, and export are built in.
+- The dev server (default: <http://localhost:3030>) opens in the browser. Editing `slides.md` or theme files **hot-reloads** the deck.
+- Use the **[Slidev](https://sli.dev)** UI for presenter mode, dark mode, recording, and export.
+
+## Python environment (optional)
+
+Create **`.venv-face`** at the repo root (this name matches [`package.json`](package.json) `optimize:public`, which calls `.venv-face/bin/python3`). Install dependencies used by the scripts below:
+
+```bash
+cd CODE-COFFEE-Slidev
+python3 -m venv .venv-face
+source .venv-face/bin/activate   # Windows: .venv-face\Scripts\activate
+python3 -m pip install --upgrade pip
+python3 -m pip install pymupdf opencv-python Pillow
+```
+
+**Details and per-script commands:** [documents/python-scripts.mid](documents/python-scripts.mid). Related workflows: [documents/birthday-photo-workflow.mid](documents/birthday-photo-workflow.mid), [documents/pdf-export-shrinking.mid](documents/pdf-export-shrinking.mid).
+
+## First edit
+
+1. Open `slides.md`.
+2. Adjust the **root frontmatter** (for example `date:` or `title:` / deck name).
+3. Save — the browser should refresh with your change.
 
 ## Project layout
 
@@ -28,8 +54,9 @@ npm run dev
 | `public/` | **Static files** served at the site root. Paths in slides are **from `/`**: e.g. `image: /projects/foo.jpg` → file `public/projects/foo.jpg`. |
 | `assets/` | Assets **imported** in Vue (e.g. `assets/cert-logos/*.png` for certification slides). |
 | `code-coffee-contents-and-elements/content/` | Optional narrative copy / outlines (e.g. weekly summary Markdown). |
-| `code-coffee-contents-and-elements/graphics/` | **Not tracked in git** (see below) — local mirror of exported graphics. |
-| `document/*.mid` | Short internal notes (workflows, PDF shrinking, [Python helper scripts](document/python-scripts.mid)). |
+| `code-coffee-contents-and-elements/graphics/` | **Not tracked in git** (see [Media & git](#media-and-git)) — local mirror of exported graphics. |
+| `documents/*.mid` | Short internal notes (workflows, PDF shrinking, [Python helper scripts](documents/python-scripts.mid)). |
+| `scripts/` | Optional Python helpers (see [Python scripts](#python-scripts)). |
 
 ## Layouts (frontmatter `layout:`)
 
@@ -61,29 +88,32 @@ npm run dev
 ## Export & static build
 
 ```bash
-npm run export            # PDF (output path shown in the terminal; often a .pdf in the project root)
+npm run export            # PDF (output path in the terminal; often a .pdf in the project root)
 npm run build             # static site in dist/
-npm run optimize:public   # compress / downscale JPEG, PNG, WebP under public/ (Python + .venv-face)
+npm run optimize:public   # recompress / downscale rasters under public/ (requires .venv-face; see below)
 ```
 
-For export options (format, size), see the [Slidev export docs](https://sli.dev/guide/exporting). After export, you can run **`python3 scripts/shrink_pdf.py`** for lossless PDF cleanup ([details](document/pdf-export-shrinking.mid)) — `pip install pymupdf` first. See [document/python-scripts.mid](document/python-scripts.mid) and `scripts/optimize_raster_images.py` (`--dry-run`, `--max-edge`, quality).
+For export options (format, size), see the [Slidev export docs](https://sli.dev/guide/exporting).
 
-## Media & git
+After `npm run export`, you can run lossless PDF cleanup with **`python3 scripts/shrink_pdf.py`** (install **PyMuPDF** first — already included in the [Python environment](#python-environment-optional) `pip install` line). See [documents/pdf-export-shrinking.mid](documents/pdf-export-shrinking.mid).
 
-Large **photos and binary images** are listed in `.gitignore` (under `public/`, most of `assets/`, and `code-coffee-contents-and-elements/graphics/`). The repo is meant to track **slides, layouts, and styles**; **clone the repo, then** restore media from your internal folder or the weekly content pack.
+## Python scripts
+
+Slidev and most npm commands are **Node-only**. These pieces use **Python**:
+
+| What | Role |
+|------|------|
+| **`npm run optimize:public`** | Runs `.venv-face/bin/python3 scripts/optimize_raster_images.py` to walk `public/` and recompress JPEG, PNG, and WebP (see [`package.json`](package.json)). |
+| **`scripts/shrink_pdf.py`** | Post-process an exported PDF for smaller file size (PyMuPDF). |
+| **`scripts/generate_public_avatars.py`** | Face crop and export square avatars under `public/` (OpenCV + Pillow). |
+
+Full command lines and flags are in [documents/python-scripts.mid](documents/python-scripts.mid).
+
+## Media and git
+
+Large **photos and binary images** are listed in `.gitignore` (under `public/`, most of `assets/`, and `code-coffee-contents-and-elements/graphics/`). The repo is meant to track **slides, layouts, and styles**; **clone the repo, then** restore media from your internal folder or the weekly content pack. **If slide paths point at `public/…` but images still do not show**, the files are often not in git on purpose — add them locally so the paths exist on disk.
 
 Small **certification logos** under `assets/cert-logos/*.png` stay tracked so certification slides keep working in a fresh clone.
-
-## Troubleshooting
-
-**`EMFILE: too many open files` (macOS, dev server)** — raise the file limit, then start Slidev:
-
-```bash
-ulimit -n 65536
-npm run dev
-```
-
-**Missing images after clone** — paths must match `public/…` and filenames must exist on disk; ignored files are not in git by design.
 
 ## License
 
