@@ -6,6 +6,6 @@ Node drives Slidev; these scripts reduce media and export size. Use **`.venv-fac
 |--------|---------|-----------------|
 | `scripts/generate_public_avatars.py` | Face crop → square avatars in `public/birthdays/`, `public/certifications/`, `public/new-member/`, `public/team/` | `.venv-face/bin/python3 scripts/generate_public_avatars.py` (see also `--reencode-only`) |
 | `scripts/optimize_raster_images.py` | Walk `public/` and recompress / downsize JPEG, PNG, WebP | `npm run optimize:public` or `.venv-face/bin/python3 scripts/optimize_raster_images.py` |
-| `scripts/shrink_pdf.py` | Lossless PDF cleanup after `npm run export` (install **pymupdf** first) | `python3 scripts/shrink_pdf.py` — see [pdf-export-shrinking.mid](pdf-export-shrinking.mid) (icons vs `--lossy`) |
+| `scripts/shrink_pdf.py` | Lossless PDF cleanup after `npm run export` (install **pymupdf** first) | `python3 scripts/shrink_pdf.py` — see [pdf-export-shrinking.md](pdf-export-shrinking.md) (icons vs `--lossy`) |
 
-Related: [birthday-photo-workflow.mid](birthday-photo-workflow.mid), [pdf-export-shrinking.mid](pdf-export-shrinking.mid).
+Related: [birthday-photo-workflow.md](birthday-photo-workflow.md), [pdf-export-shrinking.md](pdf-export-shrinking.md).

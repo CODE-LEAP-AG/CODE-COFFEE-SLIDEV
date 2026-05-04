@@ -14,7 +14,7 @@ This repo is the **Code Coffee** [Slidev](https://sli.dev) deck for CODE LEAP AG
 1. **Prepare** material under `assets/` (or your team’s shared folders), then **process** it with [`scripts/`](../scripts/) when needed (face crop → square avatars, optimization, etc.) **or** copy the final file straight into `public/`.
 2. **Point `slides.md` only at `public/` paths** (leading `/`) for images that should appear on slides — after the files physically exist there.
 
-Details on portrait generation: [birthday-photo-workflow.mid](birthday-photo-workflow.mid). Script index: [python-scripts.mid](python-scripts.mid).
+Details on portrait generation: [birthday-photo-workflow.md](birthday-photo-workflow.md). Script index: [python-scripts.md](python-scripts.md).
 
 ## Root-level map
 
@@ -27,13 +27,13 @@ Details on portrait generation: [birthday-photo-workflow.mid](birthday-photo-wor
 | **`public/`** | **Served static files** — what the deck loads by URL (`/…`). Final images and fonts the slides reference. |
 | **`assets/`** | **Prep and bundled art** — source imagery and processing inputs; plus small files **imported** from Vue when layouts bundle them (see [README — Project layout](../README.md#project-layout)). |
 | **`scripts/`** | Optional **Python** pipelines (avatars, raster optimize, PDF shrink). Node/`npm` still drives Slidev itself. |
-| **`documents/*.mid`** | Internal notes: this map, [editing workflow](editing-workflow.mid), portraits, PDF, Python scripts. |
+| **`documents/*.md`** | Internal notes: this map, [editing workflow](editing-workflow.md), portraits, PDF, Python scripts. |
 | **`dist/`** | Output of `npm run build` (static site). Regenerated; not the canonical source of slide content. |
 | **`package.json`** | npm scripts (`dev`, `build`, `export`, `optimize:public`) and Slidev/Vue dependencies. Slidev uses Vite under the hood; you usually do not add a separate Vite config unless you customize the setup. |
 
 ## Git and media
 
-Large rasters under `public/` and most of `assets/` are often **gitignored** so the repo stays small. After `git clone`, you may need to copy photos from your team’s asset folder or weekly pack so paths in `slides.md` resolve locally. Small assets such as **`assets/cert-logos/*.png`** may stay tracked so layouts keep working in a fresh clone.
+Large rasters under `public/` and most of `assets/` are often **gitignored** so the repo stays small. After `git clone`, you may need to copy photos from your team’s asset folder or monthly content pack so paths in `slides.md` resolve locally. Small assets such as **`assets/cert-logos/*.png`** may stay tracked so layouts keep working in a fresh clone.
 
 Details: [README.md — Media and git](../README.md#media-and-git).
 
@@ -41,7 +41,7 @@ Details: [README.md — Media and git](../README.md#media-and-git).
 
 - **Run the deck, export, Python setup:** [README.md — Quick start](../README.md#quick-start), [Export & static build](../README.md#export--static-build), [Python environment](../README.md#python-environment-optional)
 - **Layout names and slide types:** [README.md — Layouts](../README.md#layouts-frontmatter-layout)
-- **Prepare assets → edit slides:** [editing-workflow.mid](editing-workflow.mid)
-- **Portraits and avatars:** [birthday-photo-workflow.mid](birthday-photo-workflow.mid)
-- **Python commands and flags:** [python-scripts.mid](python-scripts.mid)
-- **Smaller PDF after export:** [pdf-export-shrinking.mid](pdf-export-shrinking.mid)
+- **Prepare assets → edit slides:** [editing-workflow.md](editing-workflow.md)
+- **Portraits and avatars:** [birthday-photo-workflow.md](birthday-photo-workflow.md)
+- **Python commands and flags:** [python-scripts.md](python-scripts.md)
+- **Smaller PDF after export:** [pdf-export-shrinking.md](pdf-export-shrinking.md)

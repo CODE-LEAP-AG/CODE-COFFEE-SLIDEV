@@ -1,6 +1,6 @@
 # Code Coffee — Slidev deck
 
-Weekly **Code Coffee** all-hands deck for **CODE LEAP AG**, built with [Slidev](https://sli.dev). One Markdown file (`slides.md`) drives the whole presentation; custom Vue **layouts** and shared **styles** match the house template (yellow accent, typography, footers). **`assets/`** holds preparation material (and a few Vue-bundled logos); **`public/`** is what the browser loads — process or copy into `public/` first, then point `slides.md` at `/…` paths. Order and AI tips: [documents/editing-workflow.mid](documents/editing-workflow.mid); folder roles: [documents/repository-layout.mid](documents/repository-layout.mid).
+Monthly **Code Coffee** all-hands deck for **CODE LEAP AG**, built with [Slidev](https://sli.dev). One Markdown file (`slides.md`) drives the presentation; custom Vue **layouts** and shared **styles** match the house template (yellow accent, typography, footers). How the folders fit together and how to edit the deck (including using AI): [documents/](documents/).
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ python3 -m pip install --upgrade pip
 python3 -m pip install pymupdf opencv-python Pillow
 ```
 
-**Details and per-script commands:** [documents/python-scripts.mid](documents/python-scripts.mid). **Orientation:** [documents/repository-layout.mid](documents/repository-layout.mid) (directory map), [documents/editing-workflow.mid](documents/editing-workflow.mid) (weekly flow and roles). Related workflows: [documents/birthday-photo-workflow.mid](documents/birthday-photo-workflow.mid), [documents/pdf-export-shrinking.mid](documents/pdf-export-shrinking.mid).
+**Details and per-script commands:** [documents/python-scripts.md](documents/python-scripts.md). **Orientation:** [documents/repository-layout.md](documents/repository-layout.md) (directory map), [documents/editing-workflow.md](documents/editing-workflow.md) (monthly workflow). Related: [documents/birthday-photo-workflow.md](documents/birthday-photo-workflow.md), [documents/pdf-export-shrinking.md](documents/pdf-export-shrinking.md).
 
 ## First edit
 
@@ -53,9 +53,7 @@ python3 -m pip install pymupdf opencv-python Pillow
 | `styles/*.css` | Global tokens, per-layout CSS, markdown bullets. `style.css` imports them. |
 | `public/` | **Served files** — static assets at the site root. Slides reference them **from `/`**: e.g. `image: /projects/foo.jpg` → `public/projects/foo.jpg`. |
 | `assets/` | **Prep and bundled art** — source photos (`individual_photos/`, etc.), working files, **and** small images **imported** in Vue (e.g. `assets/cert-logos/*.png`). Slide image URLs normally target `public/` after prep or scripts. |
-| `code-coffee-contents-and-elements/content/` | Optional narrative copy / outlines (e.g. weekly summary Markdown). |
-| `code-coffee-contents-and-elements/graphics/` | **Not tracked in git** (see [Media & git](#media-and-git)) — local mirror of exported graphics. |
-| `documents/*.mid` | Internal notes: [repository layout](documents/repository-layout.mid), [editing workflow](documents/editing-workflow.mid), [Python helper scripts](documents/python-scripts.mid), [portrait workflow](documents/birthday-photo-workflow.mid), [PDF shrinking](documents/pdf-export-shrinking.mid). |
+| `documents/*.md` | Internal notes: [repository layout](documents/repository-layout.md), [editing workflow](documents/editing-workflow.md), [Python helper scripts](documents/python-scripts.md), [portrait workflow](documents/birthday-photo-workflow.md), [PDF shrinking](documents/pdf-export-shrinking.md). |
 | `scripts/` | Optional Python helpers (see [Python scripts](#python-scripts)). |
 
 ## Layouts (frontmatter `layout:`)
@@ -73,10 +71,10 @@ python3 -m pip install pymupdf opencv-python Pillow
 | `project` | Project update: bullets + team grid |
 | `end` | Closing slide |
 
-## Editing a weekly deck
+## Editing a monthly deck
 
-1. **Prepare what will display** — Gather images, certification art, etc.; run [`scripts/`](scripts/) or copy final files into **`public/...`** so slide paths resolve (see [documents/editing-workflow.mid](documents/editing-workflow.mid)). Optional: stage or hold source material under **`assets/`**.
-2. **Duplicate or branch** from the last week’s `slides.md` if you want history; otherwise edit in place.
+1. **Prepare what will display** — Gather images, certification art, etc.; run [`scripts/`](scripts/) or copy final files into **`public/...`** so slide paths resolve (see [documents/editing-workflow.md](documents/editing-workflow.md)). Optional: stage or hold source material under **`assets/`**.
+2. **Duplicate or branch** from the previous month’s `slides.md` if you want history; otherwise edit in place.
 3. Update the **root frontmatter** in `slides.md` (`date:`, `info:`, `title` / `name` as you prefer).
 4. For each slide: set `layout`, then props the layout expects (see the matching `layouts/<name>.vue` `defineProps` and the examples already in `slides.md`). If no layout fits, add one under `layouts/` (see workflow doc).
 5. **Images**  
@@ -84,7 +82,7 @@ python3 -m pip install pymupdf opencv-python Pillow
    - Raster files under `public/` are **gitignored** to keep the repository small; add them locally or pull from your team’s asset store. Re-run the deck after copying files.
 6. **Page numbers** — `pageNumber` in frontmatter is set manually so reordering slides doesn’t auto-shift numbers; remove it if you rely on Slidev’s built-in slide index instead.
 
-When using **AI** to edit `slides.md`, supply **verified** names, dates, and file paths; treat the output as a draft and **review in the browser** — see [documents/editing-workflow.mid](documents/editing-workflow.mid).
+When using **AI** to edit `slides.md`, supply **verified** names, dates, and file paths; treat the output as a draft and **review in the browser** — see [documents/editing-workflow.md](documents/editing-workflow.md).
 
 > **Note:** `title:` in frontmatter is reserved by Slidev for the **browser / meta title**. Use `heading:` (or each layout’s prop name) for on-slide titles.
 
@@ -98,7 +96,7 @@ npm run optimize:public   # recompress / downscale rasters under public/ (requir
 
 For export options (format, size), see the [Slidev export docs](https://sli.dev/guide/exporting).
 
-After `npm run export`, you can run lossless PDF cleanup with **`python3 scripts/shrink_pdf.py`** (install **PyMuPDF** first — already included in the [Python environment](#python-environment-optional) `pip install` line). See [documents/pdf-export-shrinking.mid](documents/pdf-export-shrinking.mid).
+After `npm run export`, you can run lossless PDF cleanup with **`python3 scripts/shrink_pdf.py`** (install **PyMuPDF** first — already included in the [Python environment](#python-environment-optional) `pip install` line). See [documents/pdf-export-shrinking.md](documents/pdf-export-shrinking.md).
 
 ## Python scripts
 
@@ -110,11 +108,11 @@ Slidev and most npm commands are **Node-only**. These pieces use **Python**:
 | **`scripts/shrink_pdf.py`** | Post-process an exported PDF for smaller file size (PyMuPDF). |
 | **`scripts/generate_public_avatars.py`** | Face crop and export square avatars under `public/` (OpenCV + Pillow). |
 
-Full command lines and flags are in [documents/python-scripts.mid](documents/python-scripts.mid).
+Full command lines and flags are in [documents/python-scripts.md](documents/python-scripts.md).
 
 ## Media and git
 
-Large **photos and binary images** are listed in `.gitignore` (under `public/`, most of `assets/`, and `code-coffee-contents-and-elements/graphics/`). The repo is meant to track **slides, layouts, and styles**; **clone the repo, then** restore media from your internal folder or the weekly content pack. **If slide paths point at `public/…` but images still do not show**, the files are often not in git on purpose — add them locally so the paths exist on disk.
+Large **photos and binary images** are listed in `.gitignore` (under `public/`, most of `assets/`, and `code-coffee-contents-and-elements/graphics/`). The repo is meant to track **slides, layouts, and styles**; **clone the repo, then** restore media from your internal folder or the monthly content pack. **If slide paths point at `public/…` but images still do not show**, the files are often not in git on purpose — add them locally so the paths exist on disk.
 
 Small **certification logos** under `assets/cert-logos/*.png` stay tracked so certification slides keep working in a fresh clone.
 

@@ -64,6 +64,6 @@ Prefer **smaller `public/` images + re-export + lossless** `shrink_pdf.py` for a
 
 ## See also
 
-- [python-scripts.mid](python-scripts.mid) — index of Python helpers
+- [python-scripts.md](python-scripts.md) — index of Python helpers
 - [PyMuPDF documentation](https://pymupdf.readthedocs.io/) — `Document.save`, `Document.rewrite_images`, `Document.ez_save`
 - [Slidev export](https://sli.dev/guide/exporting.html) — `slidev export` and optional browser exporter
