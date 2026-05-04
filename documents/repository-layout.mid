@@ -1,0 +1,47 @@
+# Repository layout (directory map)
+
+This repo is the **Code Coffee** [Slidev](https://sli.dev) deck for CODE LEAP AG. Nearly all slide copy and structure lives in a single Markdown file at the repo root: **`slides.md`**.
+
+## Assets vs `public/` (prep vs what gets served)
+
+| Location | Role |
+|----------|------|
+| **`assets/`** | **Content preparation** — source photos, exports, and other inputs *before* they are ready for the deck. Examples: year folders of individual portraits (`assets/individual_photos/...`), graphics you are still editing, small images **imported directly in Vue** (e.g. `assets/cert-logos/*.png` used by the certification layout). This is *not* where slide frontmatter URLs point for most full-bleed or avatar images. |
+| **`public/`** | **What Slidev serves in the browser** — static files at the site root. Slide YAML uses paths **from `/`**: e.g. `avatar: /birthdays/jane-doe.jpg` → file `public/birthdays/jane-doe.jpg`. The template reads these URLs for photos, fonts, and large slide imagery. |
+
+**Typical flow:**
+
+1. **Prepare** material under `assets/` (or your team’s shared folders), then **process** it with [`scripts/`](../scripts/) when needed (face crop → square avatars, optimization, etc.) **or** copy the final file straight into `public/`.
+2. **Point `slides.md` only at `public/` paths** (leading `/`) for images that should appear on slides — after the files physically exist there.
+
+Details on portrait generation: [birthday-photo-workflow.mid](birthday-photo-workflow.mid). Script index: [python-scripts.mid](python-scripts.mid).
+
+## Root-level map
+
+| Path | Role |
+|------|------|
+| **`slides.md`** | **Source of truth** for the deck — one `---`-delimited block per slide; YAML frontmatter picks `layout:` and passes props. |
+| **`layouts/*.vue`** | Custom Vue slide layouts (cover, section, birthday, person, project, etc.). Extend when you need a new slide *structure*; routine copy stays in `slides.md`. |
+| **`styles/*.css`** | Tokens, markdown bullets, per-layout styling. |
+| **`style.css`** | Entry point that imports the files under `styles/`. |
+| **`public/`** | **Served static files** — what the deck loads by URL (`/…`). Final images and fonts the slides reference. |
+| **`assets/`** | **Prep and bundled art** — source imagery and processing inputs; plus small files **imported** from Vue when layouts bundle them (see [README — Project layout](../README.md#project-layout)). |
+| **`scripts/`** | Optional **Python** pipelines (avatars, raster optimize, PDF shrink). Node/`npm` still drives Slidev itself. |
+| **`documents/*.mid`** | Internal notes: this map, [editing workflow](editing-workflow.mid), portraits, PDF, Python scripts. |
+| **`dist/`** | Output of `npm run build` (static site). Regenerated; not the canonical source of slide content. |
+| **`package.json`** | npm scripts (`dev`, `build`, `export`, `optimize:public`) and Slidev/Vue dependencies. Slidev uses Vite under the hood; you usually do not add a separate Vite config unless you customize the setup. |
+
+## Git and media
+
+Large rasters under `public/` and most of `assets/` are often **gitignored** so the repo stays small. After `git clone`, you may need to copy photos from your team’s asset folder or weekly pack so paths in `slides.md` resolve locally. Small assets such as **`assets/cert-logos/*.png`** may stay tracked so layouts keep working in a fresh clone.
+
+Details: [README.md — Media and git](../README.md#media-and-git).
+
+## Where to look next
+
+- **Run the deck, export, Python setup:** [README.md — Quick start](../README.md#quick-start), [Export & static build](../README.md#export--static-build), [Python environment](../README.md#python-environment-optional)
+- **Layout names and slide types:** [README.md — Layouts](../README.md#layouts-frontmatter-layout)
+- **Prepare assets → edit slides:** [editing-workflow.mid](editing-workflow.mid)
+- **Portraits and avatars:** [birthday-photo-workflow.mid](birthday-photo-workflow.mid)
+- **Python commands and flags:** [python-scripts.mid](python-scripts.mid)
+- **Smaller PDF after export:** [pdf-export-shrinking.mid](pdf-export-shrinking.mid)

@@ -1,6 +1,6 @@
 # Code Coffee — Slidev deck
 
-Weekly **Code Coffee** all-hands deck for **CODE LEAP AG**, built with [Slidev](https://sli.dev). One Markdown file (`slides.md`) drives the whole presentation; custom Vue **layouts** and shared **styles** match the house template (yellow accent, typography, footers).
+Weekly **Code Coffee** all-hands deck for **CODE LEAP AG**, built with [Slidev](https://sli.dev). One Markdown file (`slides.md`) drives the whole presentation; custom Vue **layouts** and shared **styles** match the house template (yellow accent, typography, footers). **`assets/`** holds preparation material (and a few Vue-bundled logos); **`public/`** is what the browser loads — process or copy into `public/` first, then point `slides.md` at `/…` paths. Order and AI tips: [documents/editing-workflow.mid](documents/editing-workflow.mid); folder roles: [documents/repository-layout.mid](documents/repository-layout.mid).
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ python3 -m pip install --upgrade pip
 python3 -m pip install pymupdf opencv-python Pillow
 ```
 
-**Details and per-script commands:** [documents/python-scripts.mid](documents/python-scripts.mid). Related workflows: [documents/birthday-photo-workflow.mid](documents/birthday-photo-workflow.mid), [documents/pdf-export-shrinking.mid](documents/pdf-export-shrinking.mid).
+**Details and per-script commands:** [documents/python-scripts.mid](documents/python-scripts.mid). **Orientation:** [documents/repository-layout.mid](documents/repository-layout.mid) (directory map), [documents/editing-workflow.mid](documents/editing-workflow.mid) (weekly flow and roles). Related workflows: [documents/birthday-photo-workflow.mid](documents/birthday-photo-workflow.mid), [documents/pdf-export-shrinking.mid](documents/pdf-export-shrinking.mid).
 
 ## First edit
 
@@ -51,11 +51,11 @@ python3 -m pip install pymupdf opencv-python Pillow
 | `slides.md` | **Source of truth** — one `---` block per slide; frontmatter sets `layout`, copy, and props. |
 | `layouts/*.vue` | Custom slide layouts (cover, section, person, event, project, etc.). |
 | `styles/*.css` | Global tokens, per-layout CSS, markdown bullets. `style.css` imports them. |
-| `public/` | **Static files** served at the site root. Paths in slides are **from `/`**: e.g. `image: /projects/foo.jpg` → file `public/projects/foo.jpg`. |
-| `assets/` | Assets **imported** in Vue (e.g. `assets/cert-logos/*.png` for certification slides). |
+| `public/` | **Served files** — static assets at the site root. Slides reference them **from `/`**: e.g. `image: /projects/foo.jpg` → `public/projects/foo.jpg`. |
+| `assets/` | **Prep and bundled art** — source photos (`individual_photos/`, etc.), working files, **and** small images **imported** in Vue (e.g. `assets/cert-logos/*.png`). Slide image URLs normally target `public/` after prep or scripts. |
 | `code-coffee-contents-and-elements/content/` | Optional narrative copy / outlines (e.g. weekly summary Markdown). |
 | `code-coffee-contents-and-elements/graphics/` | **Not tracked in git** (see [Media & git](#media-and-git)) — local mirror of exported graphics. |
-| `documents/*.mid` | Short internal notes (workflows, PDF shrinking, [Python helper scripts](documents/python-scripts.mid)). |
+| `documents/*.mid` | Internal notes: [repository layout](documents/repository-layout.mid), [editing workflow](documents/editing-workflow.mid), [Python helper scripts](documents/python-scripts.mid), [portrait workflow](documents/birthday-photo-workflow.mid), [PDF shrinking](documents/pdf-export-shrinking.mid). |
 | `scripts/` | Optional Python helpers (see [Python scripts](#python-scripts)). |
 
 ## Layouts (frontmatter `layout:`)
@@ -75,13 +75,16 @@ python3 -m pip install pymupdf opencv-python Pillow
 
 ## Editing a weekly deck
 
-1. **Duplicate or branch** from the last week’s `slides.md` if you want history; otherwise edit in place.
-2. Update the **root frontmatter** in `slides.md` (`date:`, `info:`, `title` / `name` as you prefer).
-3. For each slide: set `layout`, then props the layout expects (see the matching `layouts/<name>.vue` `defineProps` and the examples already in `slides.md`).
-4. **Images**  
-   - Put files under `public/...` and reference them with a **leading `/`**: e.g. `avatar: /team/jane-doe.jpg` → `public/team/jane-doe.jpg`.  
+1. **Prepare what will display** — Gather images, certification art, etc.; run [`scripts/`](scripts/) or copy final files into **`public/...`** so slide paths resolve (see [documents/editing-workflow.mid](documents/editing-workflow.mid)). Optional: stage or hold source material under **`assets/`**.
+2. **Duplicate or branch** from the last week’s `slides.md` if you want history; otherwise edit in place.
+3. Update the **root frontmatter** in `slides.md` (`date:`, `info:`, `title` / `name` as you prefer).
+4. For each slide: set `layout`, then props the layout expects (see the matching `layouts/<name>.vue` `defineProps` and the examples already in `slides.md`). If no layout fits, add one under `layouts/` (see workflow doc).
+5. **Images**  
+   - Reference files under `public/...` with a **leading `/`**: e.g. `avatar: /team/jane-doe.jpg` → `public/team/jane-doe.jpg`.  
    - Raster files under `public/` are **gitignored** to keep the repository small; add them locally or pull from your team’s asset store. Re-run the deck after copying files.
-5. **Page numbers** — `pageNumber` in frontmatter is set manually so reordering slides doesn’t auto-shift numbers; remove it if you rely on Slidev’s built-in slide index instead.
+6. **Page numbers** — `pageNumber` in frontmatter is set manually so reordering slides doesn’t auto-shift numbers; remove it if you rely on Slidev’s built-in slide index instead.
+
+When using **AI** to edit `slides.md`, supply **verified** names, dates, and file paths; treat the output as a draft and **review in the browser** — see [documents/editing-workflow.mid](documents/editing-workflow.mid).
 
 > **Note:** `title:` in frontmatter is reserved by Slidev for the **browser / meta title**. Use `heading:` (or each layout’s prop name) for on-slide titles.
 
