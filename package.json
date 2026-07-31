@@ -10,7 +10,7 @@
     "optimize:public": ".venv-face/bin/python3 scripts/optimize_raster_images.py"
   },
   "dependencies": {
-    "@slidev/cli": "^0.50.0",
+    "@slidev/cli": "^52.18.1",
     "@slidev/theme-default": "^0.25.0",
     "vue": "^3.4.0"
   },
